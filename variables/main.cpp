@@ -64,23 +64,39 @@ void vectorExample()
 }
 
 template<typename T>
+struct tvec1
+{
+	union { T x, r, s; } ;
+	union { T y, g, t; } ;
+};
+
+template<typename T>
 struct tvec2
 {
-    union {T x, r, s;};
-    union {T y, g, t;};
+	union { T x, r, s; } chicken;
+	union { T y, g, t; } duck;
 };
 
 void unionexample()
 {
-    tvec2<int> v;
-    v.x = 1;
-    v.r = 2;
-    v.s = 3;
-    v.y = 12;
-    v.g = 13;
-    v.t = 14;
+	tvec1<float> u;
+	u.x = 1.2f;
+	u.r = 2.3f;
+	u.s = 3.4f;
+    u.y = 4.5f;
+	u.g = 5.6f;
 
-    printf("hello");
+
+	tvec2<int> v;
+	v.chicken.x = 1;
+	v.chicken.r = 2;
+	v.chicken.s = 3;
+	v.duck.y = 12;
+	v.duck.g = 13;
+	v.duck.t = 14;
+
+	// Set breakpoint on the below line
+	printf("hello");
 }
 
 int main(int argc, char **argv)
